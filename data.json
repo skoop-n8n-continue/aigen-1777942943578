@@ -1,0 +1,77 @@
+{
+  "app_id": "aigen-1777770509754",
+  "document_version": 1,
+  "sections": {
+    "storefront": {
+      "headline": {
+        "type": "text",
+        "label": "Headline",
+        "value": "Hello Worldjbub"
+      },
+      "message": {
+        "type": "textarea",
+        "label": "Message",
+        "value": "Welcome to your newiijiii Skoop signage application. This is a simple hello world demonstration."
+      }
+    },
+    "app_settings": {
+      "primary_color": {
+        "type": "color",
+        "label": "Primary Color",
+        "value": "#cecac0"
+      },
+      "background_color": {
+        "type": "color",
+        "label": "Background Color",
+        "value": "#be5423"
+      },
+      "text_color": {
+        "type": "color",
+        "label": "Text Color",
+        "value": "#0edd26"
+      },
+      "show_time": {
+        "type": "boolean",
+        "label": "Show Time",
+        "value": true
+      },
+      "show_timezone": {
+        "type": "boolean",
+        "label": "Show Timezone",
+        "value": false
+      },
+      "timezone_format": {
+        "type": "enum",
+        "label": "Timezone Format",
+        "value": "short",
+        "meta": {
+          "options": [
+            "short",
+            "long",
+            "offset"
+          ]
+        }
+      },
+      "selected_timezone": {
+        "type": "enum",
+        "label": "Timezone",
+        "value": "America/Los_Angeles",
+        "meta": {
+          "options": [
+            "Local",
+            "UTC",
+            "America/New_York",
+            "America/Chicago",
+            "America/Denver",
+            "America/Los_Angeles",
+            "Europe/London",
+            "Europe/Paris",
+            "Asia/Tokyo",
+            "Asia/Dubai",
+            "Australia/Sydney"
+          ]
+        }
+      }
+    }
+  }
+}
