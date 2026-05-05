@@ -1,5 +1,5 @@
 {
-  "app_id": "aigen-1777770509754",
+  "app_id": "aigen-1777942943578",
   "document_version": 1,
   "sections": {
     "storefront": {
@@ -29,6 +29,11 @@
         "type": "color",
         "label": "Text Color",
         "value": "#0edd26"
+      },
+      "show_headline": {
+        "type": "boolean",
+        "label": "Show Headline",
+        "value": true
       },
       "show_time": {
         "type": "boolean",

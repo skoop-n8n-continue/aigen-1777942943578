@@ -31,18 +31,9 @@ async function init() {
     document.querySelector('.headline').textContent = storefront.headline.value;
     document.querySelector('.message').textContent = storefront.message.value;
 
-    // Handle time visibility
-    const timeContainer = document.querySelector('.time-container');
-    const showTime = settings.show_time.value !== false;
-    const showTimezone = settings.show_timezone.value !== false;
-
-    if (showTime || showTimezone) {
-        timeContainer.style.display = 'flex';
-        updateTime(data);
-        setInterval(() => updateTime(data), 1000);
-    } else {
-        timeContainer.style.display = 'none';
-    }
+    // Initialize time - visibility is handled by data-bind-show attributes
+    updateTime(data);
+    setInterval(() => updateTime(data), 1000);
 
     // Reveal the app
     document.getElementById('app-container').classList.add('loaded');
@@ -74,38 +65,28 @@ function updateTime(data) {
     }
 
     // Update Time
-    if (settings.show_time.value !== false) {
-        timeEl.style.display = 'inline';
-        timeEl.textContent = now.toLocaleTimeString([], timeOptions);
-    } else {
-        timeEl.style.display = 'none';
-    }
+    timeEl.textContent = now.toLocaleTimeString([], timeOptions);
 
     // Update Timezone
-    if (settings.show_timezone.value !== false) {
-        timezoneEl.style.display = 'inline';
-        const format = settings.timezone_format?.value || 'short';
+    const format = settings.timezone_format?.value || 'short';
 
-        let tzString = '';
-        try {
-            const tzOptions = {
-                timeZoneName: format === 'offset' ? 'shortOffset' : format,
-            };
-            if (selectedTz && selectedTz !== 'Local') tzOptions.timeZone = selectedTz;
+    let tzString = '';
+    try {
+        const tzOptions = {
+            timeZoneName: format === 'offset' ? 'shortOffset' : format,
+        };
+        if (selectedTz && selectedTz !== 'Local') tzOptions.timeZone = selectedTz;
 
-            const parts = new Intl.DateTimeFormat('en-US', tzOptions).formatToParts(now);
+        const parts = new Intl.DateTimeFormat('en-US', tzOptions).formatToParts(now);
 
-            const tzPart = parts.find(p => p.type === 'timeZoneName');
-            tzString = tzPart ? tzPart.value : '';
-        } catch (e) {
-            // Fallback for timezone
-            tzString = (selectedTz && selectedTz !== 'Local') ? selectedTz : Intl.DateTimeFormat().resolvedOptions().timeZone;
-        }
-
-        timezoneEl.textContent = tzString;
-    } else {
-        timezoneEl.style.display = 'none';
+        const tzPart = parts.find(p => p.type === 'timeZoneName');
+        tzString = tzPart ? tzPart.value : '';
+    } catch (e) {
+        // Fallback for timezone
+        tzString = (selectedTz && selectedTz !== 'Local') ? selectedTz : Intl.DateTimeFormat().resolvedOptions().timeZone;
     }
+
+    timezoneEl.textContent = tzString;
 }
 
 // Start the app
